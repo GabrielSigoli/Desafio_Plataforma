@@ -22,7 +22,7 @@ xmlns="sap.m">
                                     <Label text="Nome" design="Bold"></Label>
                                 </form:label>
                                 <form:fields><!-- São inputs -->
-                                    <Input value="{Parceiro>/nome}"></Input><!-- Campo de entrada inserir nome -->
+                                    <Input value="{Plataforma>/nome}"></Input><!-- Campo de entrada inserir nome -->
                                 </form:fields>
                             </form:FormElement>
 
@@ -31,7 +31,7 @@ xmlns="sap.m">
                                     <Label text="Tipo" design="Bold"></Label>
                                 </form:label>
                                 <form:fields>
-                                    <ComboBox selectedKey="{Parceiro>/tipo}"><!-- ComboBox é uma lista de opções do Tipo rolagem.  -->
+                                    <ComboBox selectedKey="{Plataforma>/tipo}"><!-- ComboBox é uma lista de opções do Tipo rolagem.  -->
                                         <items><!-- São as opções da lista do ComboBox -->
                                             <core:Item key="Fornecedor" text="Fornecedor" />
                                             <core:Item key="Prestador Serviço" text="Prestador Serviço" />
@@ -46,7 +46,7 @@ xmlns="sap.m">
                                     <Label text="Status" design="Bold"></Label>
                                 </form:label>
                                 <form:fields><!-- São inputs -->
-                                    <Switch type="AcceptReject" change="onChangeSwitch" state="{= ${Parceiro>/status} === 'A' ? true : false}"></Switch><!-- Switch é o elemento de status tipo chave. AcceptReject muda a cor -->
+                                    <Switch type="AcceptReject" change="onChangeSwitch" state="{= ${Plataforma>/status} === 'A' ? true : false}"></Switch><!-- Switch é o elemento de status tipo chave. AcceptReject muda a cor -->
                                 </form:fields>
                             </form:FormElement>
                         

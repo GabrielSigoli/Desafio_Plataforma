@@ -36,14 +36,14 @@ xmlns="sap.m">
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem type="Detail" detailPress="onNavEditarParceiro"> <!-- São os dados apresentados na tabela -->
+                    <ColumnListItem type="Detail" detailPress="onNavEditarPlataforma"> <!-- São os dados apresentados na tabela -->
                         <cells><!-- Chamadas-->
-                            <Text text="{Plataforma>id}"></Text>
+                            <Text text="{Plataforma>id}"></Text><!-- Chamada do campo ID da api-cadastral-->
                             <Text text="{Plataforma>nome}"></Text>
                             <Text text="{Plataforma>tipo}"></Text>
                             <Text text="{Plataforma>criado}"></Text>
                             <Text text="{Plataforma>atualizado}"></Text>
-                            <ObjectStatus text="{= ${Plataforma>status} === 'A' ? 'Ativo' : 'Inativo'}" inverted="true" state="{= ${Parceiros>status} === 'A' ? 'Success' : 'Error'}"></ObjectStatus>
+                            <ObjectStatus text="{= ${Plataforma>status} === 'A' ? 'Ativo' : 'Inativo'}" inverted="true" state="{= ${Plataforma>status} === 'A' ? 'Success' : 'Error'}"></ObjectStatus> <!-- "?" Significa se for verdade -->
                         </cells>
                     </ColumnListItem>
                 </items>
