@@ -11,6 +11,8 @@ sap.ui.define([
             
             getRouter : function(){
                 return this.getOwnerComponent().getRouter();
+                console.log("Teste");
+                
             },
 
             getModel : function(sName){
