@@ -1,0 +1,21 @@
+/* Enter your custom styles here */
+
+/* Enter your custom styles here */
+/*#cancel{
+    background-color: #0ba2fa; 
+    border-color: #0ba2fa;  
+}*/
+.sapMPage>section{
+    background-color: white; /*Cor de fundo*/ 
+}
+span.sapMBtnInner.sapMBtnEmphasized {
+    background-color: #0ba2fa; /*Cor de fundo botão*/ 
+    border-color: #0ba2fa; /*Cor da borda do botão*/ 
+}
+
+.sapMIBar-CTX .sapMBtn:hover>.sapMBtnHoverable.sapMBtnEmphasized:not(.sapMBtnActive) {
+    background-color: #1E90FF;/*Efeito do click*/ 
+    border-color: #1E90FF;/*Cor da borda do button depois do houver"transição"*/ 
+    color: #FFFFFF;/*Cor da fonte do botão continuar depois do houver"transição"*/ 
+}
+

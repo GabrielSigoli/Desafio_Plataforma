@@ -1,0 +1,68 @@
+<mvc:View xmlns:core="sap.ui.core" 
+controllerName="treinamento.l4e.app.controller.CadastroPlataforma" 
+xmlns:form="sap.ui.layout.form" 
+xmlns:mvc="sap.ui.core.mvc" 
+displayBlock="true" 
+xmlns="sap.m">
+    <!-- form pode ser qualquer nome Já o Form, é a bíblioteca -->
+    <Page showHeader="true" title="Cadastro de Plataforma" titleAlignment="Center">
+        <content>
+            <form:Form >
+                <form:title>
+                    <core:Title text="Preencha os campos necessários" level="H6" ></core:Title>
+                </form:title>
+                <form:layout><!-- Trabalha com a responsividade -->
+                    <form:ColumnLayout columnsL="3" columnsM="2" columnsXL="4"></form:ColumnLayout><!-- Divide em colunas columnsL=Tela Grande columnsM=Tela Media columnsXL=Tela Extra Grande -->
+                </form:layout>
+                <form:formContainers>  <!-- Onde fica as entradas e elementos de tela -->
+                    <form:FormContainer >
+                        <form:formElements><!--São os inputs e elementos de tela como Label-->
+                            <form:FormElement >
+                                <form:label><!-- Campo de instruções Tipo -->
+                                    <Label text="Nome" design="Bold"></Label>
+                                </form:label>
+                                <form:fields><!-- São inputs -->
+                                    <Input value="{Parceiro>/nome}"></Input><!-- Campo de entrada inserir nome -->
+                                </form:fields>
+                            </form:FormElement>
+
+                            <form:FormElement >
+                                <form:label>
+                                    <Label text="Tipo" design="Bold"></Label>
+                                </form:label>
+                                <form:fields>
+                                    <ComboBox selectedKey="{Parceiro>/tipo}"><!-- ComboBox é uma lista de opções do Tipo rolagem.  -->
+                                        <items><!-- São as opções da lista do ComboBox -->
+                                            <core:Item key="Fornecedor" text="Fornecedor" />
+                                            <core:Item key="Prestador Serviço" text="Prestador Serviço" />
+                                            <core:Item key="Entregador" text="Entregador" />
+                                        </items>
+                                    </ComboBox>
+                                </form:fields>
+                            </form:FormElement>
+
+                             <form:FormElement >
+                                <form:label>
+                                    <Label text="Status" design="Bold"></Label>
+                                </form:label>
+                                <form:fields><!-- São inputs -->
+                                    <Switch type="AcceptReject" change="onChangeSwitch" state="{= ${Parceiro>/status} === 'A' ? true : false}"></Switch><!-- Switch é o elemento de status tipo chave. AcceptReject muda a cor -->
+                                </form:fields>
+                            </form:FormElement>
+                        
+                        </form:formElements>
+                    </form:FormContainer>
+                
+                </form:formContainers> 
+            </form:Form>
+        </content>
+        <footer>
+            <OverflowToolbar ><!-- Barra branca do footer -->
+                <Button text="Confirmar" type="Emphasized" press="onConfirmar"/><!-- Botão confirmar, Emphasized destaca o botão -->
+                <Button id="Cancel" text="Cancelar" type="Reject" press="onCancelar"/> <!-- Botão cancelar, Reject fica vermelho -->
+                <ToolbarSpacer/><!-- É o espaço(Margem) na barra do footer -->
+            </OverflowToolbar>
+        </footer>
+    </Page>
+		
+</mvc:View>
