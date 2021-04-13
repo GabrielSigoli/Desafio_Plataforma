@@ -33,9 +33,13 @@ xmlns="sap.m">
                                 <form:fields>
                                     <ComboBox selectedKey="{Plataforma>/tipo}"><!-- ComboBox é uma lista de opções do Tipo rolagem.  -->
                                         <items><!-- São as opções da lista do ComboBox -->
-                                            <core:Item key="Fornecedor" text="Fornecedor" />
-                                            <core:Item key="Prestador Serviço" text="Prestador Serviço" />
-                                            <core:Item key="Entregador" text="Entregador" />
+                                            <core:Item key="Plataforma JAVA" text="Plataforma JAVA" />
+                                            <core:Item key="Plataforma.NET" text="Plataforma.NET" />
+                                            <core:Item key="Plataforma KDE" text="Plataforma KDE" />
+                                            <core:Item key="Plataforma em Nuvem" text="Plataforma em Nuvem" />
+                                            <core:Item key="Sistema de Software" text="Sistema de Software" />
+                                            <core:Item key="Windows" text="Windows" />
+                                            <core:Item key="Open Source" text="Open Source" />
                                         </items>
                                     </ComboBox>
                                 </form:fields>

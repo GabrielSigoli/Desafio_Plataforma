@@ -5,7 +5,7 @@ displayBlock="true"
 xmlns="sap.m">
 	<Page showHeader="true" title="Consulta de Plataforma" titleAlignment="Center"> <!-- Aligment = alinhamento  -->
         <content>
-            <Table mode="Delete" id="tablePlataforma" delete="onExcluir" items="{path: 'Plataforma>/'}"><!-- ">/" usado para acessar -->
+            <Table mode="Delete" id="tablePlataforma" delete="onExcluir" items="{path: 'Plataforma>/'}"><!-- mode="Delete" - icone X   ">/" usado para acessar -->
                 <headerToolbar> <!-- Cabeçalho da Tabela -->
                     <OverflowToolbar ><!-- Rodapé da Tabela -->
                         <content><!-- Corpo do header -->

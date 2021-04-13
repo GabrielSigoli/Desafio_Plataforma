@@ -13,9 +13,35 @@ span.sapMBtnInner.sapMBtnEmphasized {
     border-color: #0ba2fa; /*Cor da borda do botão*/ 
 }
 
-.sapMIBar-CTX .sapMBtn:hover>.sapMBtnHoverable.sapMBtnEmphasized:not(.sapMBtnActive) {
+
+
+
+/*Cor do Switch*/
+.sapMSwtAcceptReject.sapMSwt.sapMSwtOn .sapMSwtHandle {
+    background: #e2f1ff;
+    border-color: #0854a0;
+}
+.sapMSwtAcceptReject .sapMSwtLabelOn::before {/* Cor do Switch antes do Houver */
+    color: #0ba2fa;
+}
+.sapMSwtAcceptReject.sapMSwt.sapMSwtOn {
+    background: #e5f2ff;
+    border-color: #0854a0; /* Borda Switch */
+}
+
+
+
+
+
+.sapMSwtAcceptReject.sapMSwt.sapMSwtOn.sapMSwtHoverable:hover .sapMSwtHandle {/* Houver Switch */
+    background: #bedfff;
+}
+.sapMIBar-CTX .sapMBtn:hover>.sapMBtnHoverable.sapMBtnEmphasized:not(.sapMBtnActive) {/* Houver Botão */
     background-color: #1E90FF;/*Efeito do click*/ 
     border-color: #1E90FF;/*Cor da borda do button depois do houver"transição"*/ 
     color: #FFFFFF;/*Cor da fonte do botão continuar depois do houver"transição"*/ 
+}
+.sapMSwt.sapMSwtAcceptReject.sapMSwtOn.sapMSwtHoverable:hover {
+    background: #e9f4ff;
 }
 

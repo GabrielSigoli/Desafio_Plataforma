@@ -14,10 +14,18 @@ sap.ui.define([
                 // Rota de edição
                 this.getRouter().getRoute("EditarPlataforma").attachPatternMatched(this.handleRouteMatchedEditarPlataforma, this);
             },
+
+
+            // Rota de cadastro
             handleRouteMatched: function(){
-                this.getView().setModel(new JSONModel(), "Plataforma");
+                 // Inicia o model com o status "A" (ativo)
+                this.getView().setModel(new JSONModel({
+                    "status": "A"
+                }), "Plataforma");
             },
 
+
+            // Rota de edição
             handleRouteMatchedEditarPlataforma: async function(){
                 var that = this;
                 var id = this.getRouter().getHashChanger().getHash().split("/")[1];
@@ -39,23 +47,25 @@ sap.ui.define([
                 
             },
 
-            onChangerSwitch: function(oEvent){// Função para retornar A ou I em vez de True or False
-                this.getView().setModel("Plataforma").setProperty("/status", oEvent.getSource().getState() === true ? "A" : "I"); // "?" = If ":" = else
+
+            // Função do elemento 'Switch' da tela
+            onChangeSwitch: function(oEvent){// Função para retornar A ou I em vez de True or False
+                this.getView().getModel("Plataforma").setProperty("/status", oEvent.getSource().getState() === true ? "A" : "I"); // "?" = If ":" = else
             },
+
 
             // Função do botão "Confirmar"
             onConfirmar: async function(){ //Resposável por pegar os dados e armazená-los 
                 var that = this;
                 var oPlataforma = this.getView().getModel("Plataforma").getData();
-                this.getView().setBusy(true);
+                
 
                 // Primeiro é validado se a rota que estamos é a rota de 'EditarPlataforma'
                 // Se for, o botão será responsável por atualizar (PUT) os dados
                 // Senão, irá criar (POST) um novo registro na tabela
                 if(this.getRouter().getHashChanger().getHash().search("EditarPlataforma") === 0){
 
-                    await 
-                    $.ajax(`api/plataformas/${oPlataforma.id}` , {
+                    await $.ajax(`api/plataformas/${oPlataforma.id}` , {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json"
@@ -73,16 +83,15 @@ sap.ui.define([
                                 onClose: function() {
                                     that.getRouter().navTo("ConsultaPlataforma");
                                 }
-                        });
+                            });
                         },
                         error(){
                             //Se a api retornar erro, exibe uma mensagem ao usuário
                             MessageBox.error("Não foi possível editar o plataforma.");
                         }
-
                     });
-                }else{
 
+                }else{
                     this.getView().setBusy(true);
                     // Método POST para salvar os dados 
                     await $.ajax("/api/plataformas", {
@@ -102,7 +111,10 @@ sap.ui.define([
                     this.getView().setBusy(false);
 
                 }
+                
             },
+
+            
             // Função do botão Cancelar
             onCancelar: function(){
                 // Se a rota for a de "EditarPlataforma", navega para a tela de Consuta
