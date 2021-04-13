@@ -18,18 +18,18 @@ sap.ui.define([
                 this.getView().setModel(new JSONModel(), "Plataforma");
             },
 
-            handleRouteMatchedEditarPlataforma: function(){
+            handleRouteMatchedEditarPlataforma: async function(){
                 var that = this;
                 var id = this.getRouter().getHashChanger().getHash().split("/")[1];
                 this.getView().setBusy(true);
-                // Faz a chamada na API para pegar o parceiro selecionado na tabela.
+                // Faz a chamada na API para pegar a plataforma selecionado na tabela.
                 // Precisamos passar o ID na url para a API retornar apenas os dados do item selecionado.
                 await 
                 $.ajax({
                     "url": `/api/plataformas/${id}`, // concatena a URL com o ID
                     "method": "GET",
                     success(data) {
-                        that.getView().setModel(new JSONModel(data), "Plataforma"); // salva o retorno da API (data) em um Model chamado 'Parceiro'
+                        that.getView().setModel(new JSONModel(data), "Plataforma"); // salva o retorno da API (data) em um Model chamado 'Plataforma'
                     },
                     error() {
                         MessageBox.error("Não foi possível buscar a plataforma.") //Se der erro de API, exibe uma mensagem ao usuário
@@ -45,16 +45,17 @@ sap.ui.define([
 
             // Função do botão "Confirmar"
             onConfirmar: async function(){ //Resposável por pegar os dados e armazená-los 
+                var that = this;
                 var oPlataforma = this.getView().getModel("Plataforma").getData();
                 this.getView().setBusy(true);
 
-                // Primeiro é validado se a rota que estamos é a rota de 'EditarParceiros'
+                // Primeiro é validado se a rota que estamos é a rota de 'EditarPlataforma'
                 // Se for, o botão será responsável por atualizar (PUT) os dados
                 // Senão, irá criar (POST) um novo registro na tabela
                 if(this.getRouter().getHashChanger().getHash().search("EditarPlataforma") === 0){
 
                     await 
-                    $.ajax("api/plataformas", {
+                    $.ajax(`api/plataformas/${oPlataforma.id}` , {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json"
@@ -67,7 +68,7 @@ sap.ui.define([
                             "status": oPlataforma.status
                         }),
                         success(){
-                            // Se a api retornar sucesso, exibe uma mensagem para o usuário e navega para a tela de "ConsultaParceiros"
+                            // Se a api retornar sucesso, exibe uma mensagem para o usuário e navega para a tela de "ConsultaPlataformar"
                             MessageBox.success("Editado com sucesso!", {
                                 onClose: function() {
                                     that.getRouter().navTo("ConsultaPlataforma");
@@ -104,8 +105,8 @@ sap.ui.define([
             },
             // Função do botão Cancelar
             onCancelar: function(){
-                // Se a rota for a de "EditarParceiros", navega para a tela de Consuta
-                // Senão, limpa o model 'Parceiro'
+                // Se a rota for a de "EditarPlataforma", navega para a tela de Consuta
+                // Senão, limpa o model 'Plataforma'
                 if(this.getRouter().getHashChanger().getHash().search("EditarPlataforma") === 0){
                     this.getRouter().navTo("ConsultaPlataforma");
                 }else{

@@ -27,42 +27,37 @@ sap.ui.define([
                     "method": "GET",
                     success(data){
                         that.getView().setModel(new JSONModel(data), "Plataforma")// Nome do JSON
-                        
-                        
                     },
                     error(){
                         MessageBox.error("Não foi possível buscar as plataformas.")
-                        
                     },
+                })
+            },
 
+            // Função do botão 'Excluir'
+            onExcluir: async function(oEvent){
+                var id = oEvent.getParameter('listItem').getBindingContext("Plataforma").getObject().id; // pega o ID do parceiro selecionado
+                this.getView().setBusy(true);
 
-
-
-                            // Função do botão 'Excluir'
-                    onExcluir: async function(oEvent){
-                        var id = oEvent.getParameter('listItem').getBindingContext("Plataforma").getObject().id; // pega o ID do parceiro selecionado
-                        this.getView().setBusy(true);
-
-                        // Método DELETE para deletar um registro 
-                        await
-                        $.ajax({
-                            "url": `/api/plataformas/${id}`,
-                            "method": "DELETE",
-                            success(data){
-                                MessageBox.success("Excluído com sucesso!")
-                            },
-                            error(){
-                                MessageBox.error("Não foi possível excluir a Plataforma.")
-                            }
-
-                        });
-                        await this.handleRouteMatched(); // chama a função para recarregar os dados da tabela
-                        this.getView().setBusy(false);
-
+                // Método DELETE para deletar um registro 
+                await
+                $.ajax({
+                    "url": `/api/plataformas/${id}`,
+                    "method": "DELETE",
+                    success(data){
+                        MessageBox.success("Excluído com sucesso!")
                     },
-                    
+                    error(){
+                        MessageBox.error("Não foi possível excluir a Plataforma.")
+                    }
 
-                     // Função do botão editar da tabela
+                });
+                await this.handleRouteMatched(); // chama a função para recarregar os dados da tabela
+                this.getView().setBusy(false);
+
+            },
+
+            // Função do botão editar da tabela
             onNavEditarPlataforma: function(oEvent){
                 var plataformaId = oEvent.getSource().getBindingContext("Plataforma").getObject().id; // atribui o id da Plataforma a variavel plataformaid selecionado
                 this.getRouter().navTo("EditarPlataforma", {id: plataformaId}); // chama a rota de edição passando o id da plataforma selecionado
@@ -80,9 +75,6 @@ sap.ui.define([
                 var oList = this.byId("tablePlataforma");
                 var oBinding = oList.getBinding("items");
                 oBinding.filter(aFilters, "Application");
-            }
-            })
-
-            }
+            } 
 		});
 	});
